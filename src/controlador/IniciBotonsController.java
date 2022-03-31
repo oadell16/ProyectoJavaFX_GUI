@@ -50,7 +50,7 @@ public class IniciBotonsController extends Application {
 		if(e.getSource() == btnPersones){//verifica si el botón es igual al que llamo al evento	
 			changeScene("/vista/PersonesView.fxml", "Persones");
 		}else if(e.getSource() == btnProductes){
-			changeScene("/vista/ProductesView.fxml", "Persones");;
+			changeScene("/vista/ProductesView.fxml", "Productes");
 		}else if(e.getSource() == btnSortir){
 			Platform.exit();
 		}
