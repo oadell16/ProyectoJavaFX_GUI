@@ -87,7 +87,7 @@ public class ProductDAO implements Persistable<Product> {
         System.out.println("Cargando archivos...");
         System.out.println("--------------------\n");
         try {
-            ObjectInputStream ois = new ObjectInputStream(new FileInputStream("productes.dat"));
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream("products.dat"));
             try {   
                 this.map = (HashMap<Integer,Product>)ois.readObject();
                 ois.close();

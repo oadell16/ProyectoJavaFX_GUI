@@ -47,7 +47,7 @@ public class PersonesDAO {
 		} catch (IOException e) {
 			System.out.println("Error escribiendo fichero");
 		}
-
+		
 	}
 
 	@SuppressWarnings("unchecked")

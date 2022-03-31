@@ -73,6 +73,7 @@ public class ProductsController{
 				nomTextField.setText(product.getName());
 				priceTextField.setText(product.getSalePrice().toString());
 				stockTextField.setText(product.getStock().toString());
+				stockTextField.setDisable(true);
 				initialDateTextField.setText(product.getInitialCatalogDate().toString());
 				finalDateTextField.setText(product.getEndCatalogDate().toString());
 			}else{ 
@@ -80,6 +81,7 @@ public class ProductsController{
 				nomTextField.setText("");
 				priceTextField.setText("");
 				stockTextField.setText("");
+				stockTextField.setDisable(false);
 				initialDateTextField.setText("");
 				finalDateTextField.setText("");
 			}
@@ -87,7 +89,7 @@ public class ProductsController{
 	}
 	 
 	@FXML private void onActionGuardar(ActionEvent e) throws IOException {
-		DateTimeFormatter dateFormater = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		DateTimeFormatter dateFormater = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		//verificar si les dades són vàlides				
 		if(isDatosValidos()){
 			Product product = new Product(Integer.parseInt(idTextField.getText()), nomTextField.getText(),Integer.parseInt(priceTextField.getText()),
@@ -96,7 +98,7 @@ public class ProductsController{
 			
 			products.add(product);
 			limpiarFormulario();
-			products.getMap();
+			System.out.println(products.getMap());
 		}
 	}
 
@@ -105,7 +107,7 @@ public class ProductsController{
 		if(isDatosValidos()){
 			if(products.delete(Integer.parseInt(idTextField.getText()))==null){
 				limpiarFormulario();
-				products.getMap();
+				System.out.println(products.getMap());
 			}
 		}
 	}
@@ -119,7 +121,7 @@ public class ProductsController{
 
 	public void sortir(){
 		products.save();
-		products.getMap();
+		System.out.println(products.getMap());
 	}
 
 	private boolean isDatosValidos() {

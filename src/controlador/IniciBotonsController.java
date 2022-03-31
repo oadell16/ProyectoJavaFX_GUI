@@ -50,7 +50,7 @@ public class IniciBotonsController extends Application {
 		if(e.getSource() == btnPersones){//verifica si el botón es igual al que llamo al evento	
 			changeScene("/vista/PersonesView.fxml", "Persones");
 		}else if(e.getSource() == btnProductes){
-			changeScene("/vista/ProductesView.fxml", "Productes");
+			changeScene("/vista/ProductsView.fxml", "Productes");
 		}else if(e.getSource() == btnSortir){
 			Platform.exit();
 		}
@@ -76,13 +76,26 @@ public class IniciBotonsController extends Application {
 		
 		/************** Modificar ************/
 		//Crear un objecte de la clase PersonasController ja que necessitarem accedir al mètodes d'aquesta classe
-		PersonesController personasControler = loader.getController();
-		personasControler.setVentana(stage);
+		if (title.equals("Persones")) {
+			PersonesController personasControler = loader.getController();
+			personasControler.setVentana(stage);
+			
+			//Programem l'event que s'executará quan es tanqui la finestra
+			stage.setOnCloseRequest((WindowEvent we) -> {
+				personasControler.sortir();
+			});
+			
+		}else if(title.equals("Productes")){
+			ProductsController productsControler = loader.getController();
+			productsControler.setVentana(stage);
+			
+			//Programem l'event que s'executará quan es tanqui la finestra
+			stage.setOnCloseRequest((WindowEvent we) -> {
+				productsControler.sortir();
+			});
+
+		}
 		
-		//Programem l'event que s'executará quan es tanqui la finestra
-		stage.setOnCloseRequest((WindowEvent we) -> {
-			personasControler.sortir();
-		});
 	}
 	
 	public static void main(String[] args) {
