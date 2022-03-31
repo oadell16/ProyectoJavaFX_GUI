@@ -10,6 +10,9 @@ import org.controlsfx.validation.Validator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
@@ -29,8 +32,12 @@ public class ProductsController{
 	@FXML private TextField nomTextField;
 	@FXML private TextField priceTextField;
 	@FXML private TextField stockTextField;
-	@FXML private TextField initialDateTextField;
-	@FXML private TextField finalDateTextField;
+	@FXML private DatePicker initialDateTextField;
+	@FXML private DatePicker finalDateTextField;
+	@FXML private CheckBox checkPack;
+	@FXML private TextArea idProductsTextArea;
+	@FXML private TextField dtoTextField;
+
 
 	private ValidationSupport vs;
 
@@ -63,37 +70,47 @@ public class ProductsController{
 		this.ventana = ventana;
 	}
 
+	@FXML private void onCheckPack(ActionEvent e) throws IOException{
+		if (checkPack.isSelected()) {
+			idProductsTextArea.setDisable(false);
+			dtoTextField.setDisable(false);
+		}else{
+			idProductsTextArea.setDisable(true);
+			dtoTextField.setDisable(true);
+		}
+		
+	}
+
 	@FXML private void onKeyPressedId(KeyEvent e) throws IOException {
 
 		if (e.getCode() == KeyCode.ENTER || e.getCode() == KeyCode.TAB){
 			//Comprovar si existeix la persona indicada en el control idTextField
 			Product product = products.search(Integer.parseInt(idTextField.getText()));
-			if(product != null){ 
+			if(product != null){
 				//posar els valors per modificarlos
 				nomTextField.setText(product.getName());
 				priceTextField.setText(product.getSalePrice().toString());
 				stockTextField.setText(product.getStock().toString());
 				stockTextField.setDisable(true);
-				initialDateTextField.setText(product.getInitialCatalogDate().toString());
-				finalDateTextField.setText(product.getEndCatalogDate().toString());
+				initialDateTextField.setValue(product.getInitialCatalogDate());
+				finalDateTextField.setValue(product.getEndCatalogDate());
 			}else{ 
 				//nou registre
 				nomTextField.setText("");
 				priceTextField.setText("");
 				stockTextField.setText("");
 				stockTextField.setDisable(false);
-				initialDateTextField.setText("");
-				finalDateTextField.setText("");
+				initialDateTextField.setValue(null);
+				finalDateTextField.setValue(null);
 			}
 		}
 	}
 	 
 	@FXML private void onActionGuardar(ActionEvent e) throws IOException {
-		DateTimeFormatter dateFormater = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		//verificar si les dades són vàlides				
 		if(isDatosValidos()){
 			Product product = new Product(Integer.parseInt(idTextField.getText()), nomTextField.getText(),Integer.parseInt(priceTextField.getText()),
-			Integer.parseInt(stockTextField.getText()), LocalDate.parse(initialDateTextField.getText(), dateFormater),LocalDate.parse(finalDateTextField.getText(), dateFormater));
+			Integer.parseInt(stockTextField.getText()),initialDateTextField.getValue(),finalDateTextField.getValue());
 			
 			
 			products.add(product);
@@ -149,7 +166,7 @@ public class ProductsController{
 		nomTextField.setText("");
 		priceTextField.setText("");
 		stockTextField.setText("");
-		initialDateTextField.setText("");
-		finalDateTextField.setText("");
+		initialDateTextField.setValue(null);
+		finalDateTextField.setValue(null);
 	}
 }
