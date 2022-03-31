@@ -21,6 +21,7 @@ public class IniciBotonsController extends Application {
 	
 	//Injecció dels panells i controls de la UI definida al fitxer fxml
 	@FXML private Button btnPersones;
+	@FXML private Button btnProductes;
 	@FXML private Button btnSortir; 
 
 	@Override
@@ -48,6 +49,8 @@ public class IniciBotonsController extends Application {
 	private void onAction(ActionEvent e) throws Exception {
 		if(e.getSource() == btnPersones){//verifica si el botón es igual al que llamo al evento	
 			changeScene("/vista/PersonesView.fxml", "Persones");
+		}else if(e.getSource() == btnProductes){
+			changeScene("/vista/ProductesView.fxml", "Persones");;
 		}else if(e.getSource() == btnSortir){
 			Platform.exit();
 		}
