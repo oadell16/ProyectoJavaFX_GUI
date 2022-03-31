@@ -9,23 +9,15 @@
             "name": "Launch Current File",
             "request": "launch",
             "mainClass": "${file}",
-            "vmArgs": "--module-path \"C:\\Users\\Oscar\\Documents\\javafx-sdk-17.0.2\\lib\" --add-modules javafx.controls,javafx.fxml --add-opens=javafx.graphics/javafx.scene=ALL-UNNAMED"
+            "vmArgs":"--module-path \"C:\\Users\\oscar\\Documents\\javafx-sdk-17.0.2\\lib\" --add-modules javafx.controls,javafx.fxml --add-opens=javafx.graphics/javafx.scene=ALL-UNNAMED"
         },
         {
             "type": "java",
             "name": "Launch IniciBotonsController",
             "request": "launch",
             "mainClass": "controlador.IniciBotonsController",
-            "projectName": "AgendaFX_ceef70a8",
-            "vmArgs": "--module-path \"C:\\Users\\Oscar\\Documents\\javafx-sdk-17.0.2\\lib\" --add-modules javafx.controls,javafx.fxml --add-opens=javafx.graphics/javafx.scene=ALL-UNNAMED"
-        },
-        {
-            "type": "java",
-            "name": "Launch IniciBotonsController",
-            "request": "launch",
-            "mainClass": "controlador.IniciBotonsController",
-            "projectName": "AgendaFX_ceef70a8",
-            "vmArgs": "--module-path \"C:\\Users\\Oscar\\Documents\\javafx-sdk-17.0.2\\lib\" --add-modules javafx.controls,javafx.fxml --add-opens=javafx.graphics/javafx.scene=ALL-UNNAMED"
+            "projectName": "ProyectoJavaFX_GUI_b4a5f7dc",
+            "vmArgs":"--module-path \"C:\\Users\\oscar\\Documents\\javafx-sdk-17.0.2\\lib\" --add-modules javafx.controls,javafx.fxml --add-opens=javafx.graphics/javafx.scene=ALL-UNNAMED"
         }
     ]
 }
